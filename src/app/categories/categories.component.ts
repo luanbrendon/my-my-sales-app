@@ -8,8 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { Category } from './category.dto';
 import { CategoryService } from './category.service';
 import { lastValueFrom } from 'rxjs';
-import { CategoryFormComponent} from './form/CategoryFormComponent';
-
+import { CategoryFormComponent } from './form/CategoryFormComponent';
+import {MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -25,7 +25,8 @@ import { CategoryFormComponent} from './form/CategoryFormComponent';
     MatSortModule,
     MatCardModule,
     MatButtonModule,
-    CategoryFormComponent
+    CategoryFormComponent,
+    MatIconModule
   ]
 })
 export class CategoriesComponent implements AfterViewInit {
@@ -43,7 +44,7 @@ export class CategoriesComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', 'description', 'actions'];
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   ngAfterViewInit(): void {
     this.loadCategories();
@@ -51,7 +52,7 @@ export class CategoriesComponent implements AfterViewInit {
 
   async loadCategories(): Promise<void> {
     this.showLoading = true;
-    const categories= await lastValueFrom(this.categoryService.getAll())
+    const categories = await lastValueFrom(this.categoryService.getAll())
     this.dataSource = new MatTableDataSource(categories)
     this.table.dataSource = this.dataSource
     this.dataSource.sort = this.sort
@@ -75,8 +76,8 @@ export class CategoriesComponent implements AfterViewInit {
 
   onSave(category: Category) {
     console.log('Save Category in the CategoriesComponent', category)
-    }
-    
+  }
+
 
   onEditCategoryClick(category: Category) {
     this.category = category;
@@ -94,6 +95,6 @@ export class CategoriesComponent implements AfterViewInit {
     // }
   }
 
-  
+
 
 }
