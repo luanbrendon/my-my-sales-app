@@ -7,7 +7,7 @@
   <!-- <loading-bar [visible]="showLoading"></loading-bar> -->
 
   @if (showForm) {
-  <category-form (back)="hideCategoryForm()"></category-form>
+  <category-form (back)="hideCategoryForm()" (save)="onSave($event)"></category-form>
   } @else {
   <mat-card-content>
     <table mat-table class="full-width-table" matSort aria-label="Elements">
