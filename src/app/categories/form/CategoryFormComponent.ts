@@ -19,22 +19,22 @@ import { MatInputModule } from '@angular/material/input';
 export class CategoryFormComponent {
 
   @Output() save = new EventEmitter();
-  onSubmit(){
+  onSubmit() {
     console.log('botao salvar clicado no category-form.component.')
     this.save.emit(this.categoryForm.value);
-    }
+  }
 
-    @Output() back = new EventEmitter();
+  @Output() back = new EventEmitter();
 
-    onBack() {
-      this.back.emit();
-      }
-    
+  onBack() {
+    this.back.emit();
+  }
+
   private fb = inject(FormBuilder)
   categoryForm = this.fb.group({
     id: [null],
-    name: ['', Validators.required, Validators.minLength(3)],
+    name: ['', [Validators.required, Validators.minLength(3)]],
     description: ['', Validators.required]
   })
-
 }
+
