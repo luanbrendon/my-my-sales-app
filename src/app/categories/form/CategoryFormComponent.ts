@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 export class CategoryFormComponent {
 
   @Output() save = new EventEmitter();
+  
   onSubmit() {
     console.log('botao salvar clicado no category-form.component.')
     this.save.emit(this.categoryForm.value);
