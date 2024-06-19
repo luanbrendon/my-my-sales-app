@@ -1,5 +1,5 @@
 <mat-card-content>
-    <form [formGroup]="categoryForm" novalidate>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="container">
             <mat-form-field class="item-30">
                 <input matInput placeholder="Name" formControlName="name" />
@@ -17,6 +17,9 @@
 
             </mat-form-field>
         </div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!categoryForm.valid">
+            Save
+        </button>
     </form>
     <mat-card-actions>
         <button type="button" mat-button color="primary" (click)="onBack()">
