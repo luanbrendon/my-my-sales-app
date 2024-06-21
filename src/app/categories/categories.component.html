@@ -3,11 +3,14 @@
     <mat-card-title>Categories</mat-card-title>
     <mat-card-subtitle>Listing all categories</mat-card-subtitle>
   </mat-card-header>
-
-  <!-- <loading-bar [visible]="showLoading"></loading-bar> -->
+<app-loading-bar [visible]="showLoading"></app-loading-bar>
+ 
 
   @if (showForm) {
-  <category-form (back)="hideCategoryForm()" (save)="onSave($event)" [category]="category"></category-form>
+  <category-form (back)="hideCategoryForm()" 
+  (save)="onSave($event)"
+  [category]="category"
+  ></category-form>
   } @else {
   <mat-card-content>
     <mat-card-content>

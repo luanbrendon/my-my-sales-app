@@ -10,6 +10,7 @@ import { CategoryService } from './category.service';
 import { lastValueFrom } from 'rxjs';
 import { CategoryFormComponent } from './form/CategoryFormComponent';
 import {MatIconModule} from '@angular/material/icon';
+import { LoadingBarComponent } from '../loading-bar.component';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -26,7 +27,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatCardModule,
     MatButtonModule,
     CategoryFormComponent,
-    MatIconModule
+    MatIconModule,
+    LoadingBarComponent
   ]
 })
 export class CategoriesComponent implements AfterViewInit {
@@ -35,7 +37,7 @@ export class CategoriesComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<CategoriesItem>;
   dataSource = new MatTableDataSource<Category>();
 
-  showLoading: Boolean = false;
+  showLoading: boolean = false;
 
   category!: Category;
 
@@ -91,9 +93,9 @@ export class CategoriesComponent implements AfterViewInit {
     console.log('delete category', category);
 
     if (confirm(`Delete "${category.name}" with id ${category.id} ?`)) {
-    //   this.showLoading = true;
+      this.showLoading = true;
       await lastValueFrom(this.categoryService.delete(category.id));
-    //   this.showLoading = false;
+      this.showLoading = false;
       this.loadCategories();
     }
   }
