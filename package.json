@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --prod && npx gh-pages -d dist/my-my-sales-app -r  https://github.com/luanbrendon/my-my-sales-app.git"
+    "deploy":"ng build --configuration production && npx gh-pages -d dist/my-my-sales-app -r  https://github.com/luanbrendon/my-my-sales-app.git"
   },
   "private": true,
   "dependencies": {
