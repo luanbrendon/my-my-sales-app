@@ -1,16 +1,14 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
-import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
-import { MatSortModule, MatSort } from '@angular/material/sort';
-import { CategoriesDataSource, CategoriesItem } from './categories-datasource';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { CategoriesItem } from './categories-datasource';
 import { Category } from './category.dto';
 import { CategoryService } from './category.service';
 import { lastValueFrom } from 'rxjs';
 import { CategoryFormComponent } from './form/CategoryFormComponent';
-import {MatIconModule} from '@angular/material/icon';
 import { LoadingBarComponent } from '../loading-bar.component';
+import { MaterialModule } from '../material.module';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -21,13 +19,9 @@ import { LoadingBarComponent } from '../loading-bar.component';
     
   `,
   standalone: true,
-  imports: [MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatCardModule,
-    MatButtonModule,
+  imports: [
+    MaterialModule,
     CategoryFormComponent,
-    MatIconModule,
     LoadingBarComponent
   ]
 })
@@ -78,7 +72,7 @@ export class CategoriesComponent implements AfterViewInit {
 
   async onSave(category: Category) {
     const saved = lastValueFrom(this.categoryService.save(category));
-    console.log('Saved' , saved);
+    console.log('Saved', saved);
     this.hideCategoryForm();
   }
 
