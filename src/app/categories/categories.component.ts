@@ -82,6 +82,7 @@ export class CategoriesComponent implements AfterViewInit {
 
 
   onEditCategoryClick(category: Category) {
+    console.log('edit category', category);
     this.category = category;
     this.showForm = true;
   }
@@ -89,12 +90,12 @@ export class CategoriesComponent implements AfterViewInit {
   async onDeleteCategoryClick(category: Category) {
     console.log('delete category', category);
 
-    // if (confirm(`Delete "${category.name}" with id ${category.id} ?`)) {
+    if (confirm(`Delete "${category.name}" with id ${category.id} ?`)) {
     //   this.showLoading = true;
-    //   await lastValueFrom(this.categoryService.delete(category.id));
+      await lastValueFrom(this.categoryService.delete(category.id));
     //   this.showLoading = false;
-    //   this.loadCategories();
-    // }
+      this.loadCategories();
+    }
   }
 
 

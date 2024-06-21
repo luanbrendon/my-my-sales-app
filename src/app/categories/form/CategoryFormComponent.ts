@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output, inject, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { Category } from '../category.dto';
 
 @Component({
   selector: 'category-form',
@@ -18,11 +19,11 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class CategoryFormComponent {
 
-  @Output() save = new EventEmitter();
-  
+  @Output() save = new EventEmitter<Category>();
+
   onSubmit() {
     console.log('botao salvar clicado no category-form.component.')
-    this.save.emit(this.categoryForm.value);
+    this.save.emit(this.categoryForm.value as Category);
   }
 
   @Output() back = new EventEmitter();
@@ -37,5 +38,10 @@ export class CategoryFormComponent {
     name: ['', [Validators.required, Validators.minLength(3)]],
     description: ['', Validators.required]
   })
-}
 
+  @Input()
+   set category(category: Category) {
+    this.categoryForm.setValue(category);
+  }
+
+}
